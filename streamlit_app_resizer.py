@@ -1,4 +1,4 @@
-%%writefile streamlit_app_resizer.py
+#%%writefile streamlit_app_resizer.py
 
 import streamlit as st
 import cv2
