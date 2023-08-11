@@ -23,8 +23,7 @@ def nearest_neighbour(img, x_scale, y_scale):
             new_img[i, j, :] = img[int(i / x_scale), int(j / y_scale), :]
     
     new_img = new_img / 255.0
-    st.write(f"uploaded image size: {img.shape}")
-    st.image(img, caption = "uploaded image", width = img.shape[1] // 5)
+    
     st.write(f"resized image size: {new_img.shape}")
     st.image(new_img, caption = "resized image", width = new_img.shape[1] // 5)
     return new_img
@@ -60,8 +59,7 @@ def bilinear(img, x_scale, y_scale):
             new_img[i , j , :] = q
                 
     new_img = new_img / 255.0
-    st.write("uploaded image size: ",img.shape)
-    st.image(img, caption = "uploaded image", width = img.shape[1] // 5)
+    
     st.write("resized image size: ",new_img.shape)
     st.image(new_img, caption = "resized image", width = new_img.shape[1] // 5)
     return new_img
@@ -80,11 +78,15 @@ def main():
         with b1:
             if st.button("Nearest neighbour interpolation"):
                 with st.spinner("resizing..."):
+                    st.write(f"uploaded image size: {img.shape}")
+                    st.image(img, caption = "uploaded image", width = img.shape[1] // 5)
                     new_img = nearest_neighbour(img, x_scale, y_scale)
                     download_img(new_img)
         with b2:
             if st.button("Bilinear interpolation"):
                 with st.spinner("resizing..."):
+                    st.write("uploaded image size: ",img.shape)
+                    st.image(img, caption = "uploaded image", width = img.shape[1] // 5)
                     new_img = bilinear(img, x_scale, y_scale)
                     download_img(new_img)
         link_github = "https://github.com/adventuresoul/Image_processing.git"
